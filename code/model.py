@@ -37,11 +37,10 @@ class bert_lstm_cnn(nn.Module):
         self.convs = nn.ModuleList([nn.Conv2d(1, self.num_filters, (f, 2 * self.lstm_units)) for f in self.kernel_sizes])
         self.fc = nn.Linear(len(kernel_sizes) * self.num_filters, self.num_classes)
         self.dropout = nn.Dropout(p=dropout_rate)
-        
 
     def forward(self, input_ids, attention_mask):
 
-        outputs = self.bert(input_ids=input_ids, attention_mask=attention_mask) # alread filter by attention mask
+        outputs = self.bert(input_ids=input_ids, attention_mask=attention_mask)  # alread filter by attention mask
         # last_hidden_state
         # pooler_output
         # hidden_states
@@ -179,8 +178,6 @@ class clf_finetuneBERT(nn.Module):
 
         logits = self.classifier(x)
         return logits
-
-
 
 
 class clf(nn.Module):
